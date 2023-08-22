@@ -11,7 +11,7 @@ void main(){
 
   Set<int> a = {1, 5, 4};
 
-  var b = [1,2 ,3];
+  var b = [1,2 ,3, 7, 8];
   b.sort((a, b) => (b-a));
   print(b);
 
