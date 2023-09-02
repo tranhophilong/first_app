@@ -1,8 +1,8 @@
-void main(){
-  printName("long", middleName: "long");
-
-  print(sumUp(1));
-}
+// void main(){
+//   printName("long", middleName: "long");
+//
+//   print(sumUp(1));
+// }
 
 
 void printName(String firstname, {required String middleName}){

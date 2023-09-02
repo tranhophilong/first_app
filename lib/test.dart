@@ -5,23 +5,103 @@ late String text;
 
 void main(){
 
-  var meal1 = Meal();
-  meal1.description = "3";
-  print(meal1.description);
+  // final list = LinkedList<int>();
+  // list.append(1);
+  // list.append(2);
+  // list.append(3);
+  //
+  // print(list.head?.next?.value);
+  // ListNode dummy = ListNode();
+  // var tail = dummy;
+  // tail.next = ListNode(1);
+  //
+  // print(dummy.runtimeType);
+  // print(dummy.next?.val);
 
-  Set<int> a = {1, 5, 4};
+  SomeClass? someThing = SomeClass(1, 2);
+  // var someThing1 = someThing;
+  print(someThing.p1);
 
-  var b = [1,2 ,3, 7, 8];
-  b.sort((a, b) => (b-a));
-  print(b);
 
-  // var max = a.first;
-  // for (var value in a) {
-  //   max = (max < value) ? value : max;
-  // }
+  // someThing1.p2 = 3;
+  // print(someThing.p2);
+  // Int? a  = 1;
 
+
+  }
+
+
+class SomeClass{
+  int  p1;
+  int p2;
+   SomeClass(this.p1, this.p2);
 }
 
+ class ListNode {
+     int val;
+     ListNode? next;
+    ListNode([this.val = 0, this.next]);
+}
+
+class Node<T> {
+  Node({required this.value, this.next});
+  T value;
+  Node<T>? next;
+}
+
+class LinkedList<E> {
+  Node<E>? head;
+  Node<E>? tail;
+
+  bool get isEmpty => head == null;
+
+  void push(E value) {
+    head = Node(value: value, next: head);
+    tail ??= head;
+  }
+
+  Node<E>? nodeAt(int index) {
+    // 1
+    var currentNode = head;
+    var currentIndex = 0;
+
+    // 2
+    while (currentNode != null && currentIndex < index) {
+      currentNode = currentNode.next;
+      currentIndex += 1;
+    }
+    return currentNode;
+  }
+
+  Node<E> insertAfter(Node<E> node, E value) {
+    // 1
+    if (tail == node) {
+      append(value);
+      return tail!;
+    }
+    // 2
+    node.next = Node(value: value, next: node.next);
+    return node.next!;
+  }
+
+  void append(E value) {
+    // 1
+    if (isEmpty) {
+      push(value);
+      return;
+    }
+    // 2
+    tail!.next = Node(value: value);
+    // 3
+    tail = tail!.next;
+  }
+
+  @override
+  String toString() {
+    if (isEmpty) return 'Empty list';
+    return head.toString();
+  }
+}
 
 
 
@@ -90,3 +170,22 @@ bool isValid(String s) {
   }
   return true;
 }
+
+
+class Vector {
+  final int x, y;
+
+  Vector(this.x, this.y);
+
+  Vector operator +(Vector v) => Vector(x + v.x, y + v.y);
+  Vector operator -(Vector v) => Vector(x - v.x, y - v.y);
+
+  @override
+  bool operator ==(Object other) =>
+      other is Vector && x == other.x && y == other.y;
+
+  @override
+  int get hashCode => Object.hash(x, y);
+
+}
+
